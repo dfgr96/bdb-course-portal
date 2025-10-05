@@ -11,8 +11,6 @@ export default function CourseDetail() {
     const fetchCourse = async () => {
       try {
         const token = localStorage.getItem("token");
-        console.log("Usando token:", token, "para courseId:", id);
-
         const response = await fetch(`http://localhost:8080/courses/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -47,8 +45,27 @@ export default function CourseDetail() {
       <h3>Módulos</h3>
       <ul>
         {course.modules.map((m) => (
-          <li key={m.id}>
+          <li key={m.id} style={{ marginBottom: "1rem" }}>
             <strong>{m.title}</strong> ({m.contentType})
+            <div style={{ marginTop: "0.5rem" }}>
+              {m.contentType === "IMAGE" && (
+                <img
+                  src={m.contentUrl}
+                  alt={m.title}
+                  style={{ maxWidth: "100%", border: "1px solid #ccc" }}
+                />
+              )}
+
+              {m.contentType === "VIDEO" && (
+                <video
+                  controls
+                  style={{ maxWidth: "100%", border: "1px solid #ccc" }}
+                >
+                  <source src={m.contentUrl} type="video/mp4" />
+                  Tu navegador no soporta el tag de video.
+                </video>
+              )}
+            </div>
           </li>
         ))}
       </ul>
