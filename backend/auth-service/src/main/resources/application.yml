@@ -14,9 +14,6 @@ app:
   jwt:
     secret: this_is_a_demo_secret_key_that_is_long_enough_123456
     expiration-ms: 86400000 # 1 día
-  oauth:
-    google:
-      client-id: ${GOOGLE_CLIENT_ID:your-google-client-id}
 
 aws:
   accessKeyId: access-key

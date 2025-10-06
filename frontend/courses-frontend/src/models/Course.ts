@@ -5,4 +5,5 @@ export interface Course {
   title: string;
   description: string;
   modules: Module[];
+  completed?: boolean;
 }

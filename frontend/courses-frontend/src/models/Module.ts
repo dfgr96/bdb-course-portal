@@ -4,4 +4,6 @@ export interface Module {
   contentType: string;
   contentUrl: string;
   orderIndex: number;
+  completed?: boolean;
+  progressPercent?: number;
 }
