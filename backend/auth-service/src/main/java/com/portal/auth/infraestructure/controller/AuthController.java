@@ -1,6 +1,8 @@
 package com.portal.auth.infraestructure.controller;
 
 import com.portal.auth.application.AuthService;
+import com.portal.dto.Login;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,12 +22,12 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody Map<String, String> loginRequest) {
+    public ResponseEntity<Login> login(@RequestBody Map<String, String> loginRequest) {
         String email = loginRequest.get("email");
         String password = loginRequest.get("passwordHash");
 
         return authService.login(email, password)
-                .map(token -> ResponseEntity.ok(Map.of("token", token)))
-                .orElseGet(() -> ResponseEntity.status(401).body(Map.of("error", "Invalid credentials")));
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
     }
 }
