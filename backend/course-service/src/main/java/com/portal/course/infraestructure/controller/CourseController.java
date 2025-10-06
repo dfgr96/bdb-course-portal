@@ -1,8 +1,8 @@
 package com.portal.course.infraestructure.controller;
 
 import com.portal.course.application.CourseService;
-import com.portal.course.domain.model.Course;
-import com.portal.course.domain.model.Section;
+import com.portal.dto.Course;
+import com.portal.dto.Section;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

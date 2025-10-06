@@ -1,6 +1,6 @@
 package com.portal.auth.domain.repository;
 
-import com.portal.auth.domain.model.User;
+import com.portal.dto.User;
 
 import java.util.List;
 import java.util.Optional;

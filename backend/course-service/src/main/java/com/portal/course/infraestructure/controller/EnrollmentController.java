@@ -1,7 +1,7 @@
 package com.portal.course.infraestructure.controller;
 
 import com.portal.course.application.EnrollmentService;
-import com.portal.course.domain.model.EnrollmentDto;
+import com.portal.dto.EnrollmentDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

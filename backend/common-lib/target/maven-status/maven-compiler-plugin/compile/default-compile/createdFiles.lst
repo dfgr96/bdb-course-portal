@@ -1,2 +1,12 @@
+com/portal/enums/ContentType.class
+com/portal/dto/CourseProgressDto.class
+com/portal/dto/Section.class
+com/portal/dto/User.class
 com/portal/App.class
+com/portal/dto/Course.class
+com/portal/dto/User$Role.class
+com/portal/dto/ModuleProgressDto.class
+com/portal/dto/EnrollmentDto.class
+com/portal/dto/ProgressDto.class
+com/portal/enums/EnrollmentStatus.class
 com/portal/security/JwtUtil.class

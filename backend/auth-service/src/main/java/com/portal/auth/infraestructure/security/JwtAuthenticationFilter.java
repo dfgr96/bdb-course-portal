@@ -1,7 +1,7 @@
 package com.portal.auth.infraestructure.security;
 
 import com.portal.auth.application.UserService;
-import com.portal.auth.domain.model.User;
+import com.portal.dto.User;
 import com.portal.security.JwtUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
