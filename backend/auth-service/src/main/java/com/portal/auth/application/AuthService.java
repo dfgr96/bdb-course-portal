@@ -1,6 +1,7 @@
 package com.portal.auth.application;
 
 import com.portal.auth.infraestructure.repository.TokenRepository;
+import com.portal.dto.Login;
 import com.portal.security.JwtUtil;
 import org.springframework.stereotype.Service;
 
@@ -19,14 +20,14 @@ public class AuthService {
         this.tokenRepository = tokenRepository;
     }
 
-    public Optional<String> login(String email, String password) {
+    public Optional<Login> login(String email, String password) {
         return userService.getUserByEmail(email)
                 .filter(user -> user.getPasswordHash() != null && user.getPasswordHash().equals(password))
                 .map(user -> {
                     String token = jwtUtil.generateToken(user.getId().toString(), user.getRole().name());
                     long expiresAt = jwtUtil.getExpiration(token).getTime();
                     tokenRepository.saveToken(token, user.getId().toString(), expiresAt);
-                    return token;
+                    return new Login(token, user.getId(), user.getName());
                 });
     }
 

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import type { Login } from "../models/Login";
 
 export default function Login() {
   const [email, setUsername] = useState("");
@@ -24,9 +25,10 @@ export default function Login() {
         throw new Error("Credenciales inválidas");
       }
 
-      const data = await response.json();
+      const data: Login = await response.json();
 
       localStorage.setItem("token", data.token);
+      localStorage.setItem("userId", data.id.toString());
       navigate("/courses"); 
     } catch (err: any) {
       setError(err.message);
