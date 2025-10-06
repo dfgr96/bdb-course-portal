@@ -1,6 +1,6 @@
 package com.portal.course.infraestructure.repository;
 
-import com.portal.course.domain.enums.EnrollmentStatus;
+import com.portal.enums.EnrollmentStatus;
 import jakarta.persistence.*;
 import lombok.Data;
 

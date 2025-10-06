@@ -1,9 +1,9 @@
 package com.portal.course.infraestructure.controller;
 
 import com.portal.course.application.ProgressService;
-import com.portal.course.domain.model.CourseProgressDto;
-import com.portal.course.domain.model.ModuleProgressDto;
-import com.portal.course.domain.model.ProgressDto;
+import com.portal.dto.CourseProgressDto;
+import com.portal.dto.ModuleProgressDto;
+import com.portal.dto.ProgressDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;

@@ -1,7 +1,7 @@
 package com.portal.course.application;
 
-import com.portal.course.domain.enums.EnrollmentStatus;
-import com.portal.course.domain.model.EnrollmentDto;
+import com.portal.enums.EnrollmentStatus;
+import com.portal.dto.EnrollmentDto;
 import com.portal.course.infraestructure.repository.EnrollmentEntity;
 import com.portal.course.infraestructure.repository.EnrollmentRepository;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.portal.auth.domain.model;
+package com.portal.dto;
 
 import lombok.Data;
 

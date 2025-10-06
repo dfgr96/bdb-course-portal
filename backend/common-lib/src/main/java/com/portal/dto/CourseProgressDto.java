@@ -1,4 +1,4 @@
-package com.portal.course.domain.model;
+package com.portal.dto;
 
 public record CourseProgressDto(
         Long courseId,

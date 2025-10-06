@@ -1,4 +1,4 @@
-package com.portal.course.domain.enums;
+package com.portal.enums;
 
 public enum EnrollmentStatus {
     ACTIVE, COMPLETED, CANCELLED

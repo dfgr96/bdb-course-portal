@@ -1,2 +1,11 @@
 /Users/felipegomezr/Documents/GitHub/bdb-course-portal/backend/common-lib/src/main/java/com/portal/App.java
+/Users/felipegomezr/Documents/GitHub/bdb-course-portal/backend/common-lib/src/main/java/com/portal/dto/ModuleProgressDto.java
+/Users/felipegomezr/Documents/GitHub/bdb-course-portal/backend/common-lib/src/main/java/com/portal/enums/ContentType.java
+/Users/felipegomezr/Documents/GitHub/bdb-course-portal/backend/common-lib/src/main/java/com/portal/dto/User.java
+/Users/felipegomezr/Documents/GitHub/bdb-course-portal/backend/common-lib/src/main/java/com/portal/dto/EnrollmentDto.java
 /Users/felipegomezr/Documents/GitHub/bdb-course-portal/backend/common-lib/src/main/java/com/portal/security/JwtUtil.java
+/Users/felipegomezr/Documents/GitHub/bdb-course-portal/backend/common-lib/src/main/java/com/portal/enums/EnrollmentStatus.java
+/Users/felipegomezr/Documents/GitHub/bdb-course-portal/backend/common-lib/src/main/java/com/portal/dto/ProgressDto.java
+/Users/felipegomezr/Documents/GitHub/bdb-course-portal/backend/common-lib/src/main/java/com/portal/dto/CourseProgressDto.java
+/Users/felipegomezr/Documents/GitHub/bdb-course-portal/backend/common-lib/src/main/java/com/portal/dto/Course.java
+/Users/felipegomezr/Documents/GitHub/bdb-course-portal/backend/common-lib/src/main/java/com/portal/dto/Section.java

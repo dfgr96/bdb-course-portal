@@ -1,6 +1,6 @@
 package com.portal.auth.infraestructure.repository;
 
-import com.portal.auth.domain.model.User;
+import com.portal.dto.User;
 import com.portal.auth.domain.repository.UserRepositoryPort;
 import org.springframework.stereotype.Component;
 

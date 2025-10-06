@@ -1,7 +1,7 @@
 package com.portal.auth.infraestructure.controller;
 
 import com.portal.auth.application.UserService;
-import com.portal.auth.domain.model.User;
+import com.portal.dto.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

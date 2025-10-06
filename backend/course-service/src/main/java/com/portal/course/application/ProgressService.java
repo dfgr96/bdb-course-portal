@@ -1,9 +1,10 @@
 package com.portal.course.application;
 
-import com.portal.course.domain.model.CourseProgressDto;
-import com.portal.course.domain.model.ModuleProgressDto;
-import com.portal.course.domain.model.ProgressDto;
-import com.portal.course.domain.model.Section;
+import com.portal.dto.CourseProgressDto;
+import com.portal.dto.ModuleProgressDto;
+import com.portal.dto.ProgressDto;
+import com.portal.dto.Section;
+import com.portal.course.domain.repository.ModuleRepositoryPort;
 import com.portal.course.infraestructure.repository.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,10 +19,10 @@ import java.util.stream.Collectors;
 public class ProgressService {
 
     private final ProgressRepository progressRepository;
-    private final ModuleRepository moduleRepository;
+    private final ModuleRepositoryPort moduleRepository;
     private final EnrollmentRepository enrollmentRepository;
 
-    public ProgressService(ProgressRepository repository, ModuleRepository moduleRepository, EnrollmentRepository enrollmentRepository) {
+    public ProgressService(ProgressRepository repository, ModuleRepositoryPort moduleRepository, EnrollmentRepository enrollmentRepository) {
         this.progressRepository = repository;
         this.moduleRepository = moduleRepository;
         this.enrollmentRepository = enrollmentRepository;
@@ -51,7 +52,7 @@ public class ProgressService {
 
     @Transactional(readOnly = true)
     public List<ModuleProgressDto> getProgressByCourse(Long userId, Long courseId) {
-        List<Section> modules = moduleRepository.findByCourseIdOrderByOrderIndex(courseId);
+        List<Section> modules = moduleRepository.findByCourseId(courseId);
 
         if (modules.isEmpty()) {
             return List.of(); //lanzar 404
@@ -89,7 +90,7 @@ public class ProgressService {
         for (EnrollmentEntity enrollment : enrollments) {
             Long courseId = enrollment.getCourseId();
 
-            List<Section> modules = moduleRepository.findByCourseIdOrderByOrderIndex(courseId);
+            List<Section> modules = moduleRepository.findByCourseId(courseId);
 
             if (modules.isEmpty()) {
                 result.add(new CourseProgressDto(courseId, "Sin módulos", 0, false));

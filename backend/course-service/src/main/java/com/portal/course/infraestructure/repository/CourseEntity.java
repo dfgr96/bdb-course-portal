@@ -1,4 +1,4 @@
-package com.portal.course.domain.model;
+package com.portal.course.infraestructure.repository;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 @Table(name = "courses")
 @Data
-public class Course {
+public class CourseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,12 +19,5 @@ public class Course {
     private String description;
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
-    private List<Section> modules = new ArrayList<>();
-
-    public Course() {}
-
-    public Course(String title, String description) {
-        this.title = title;
-        this.description = description;
-    }
+    private List<SectionEntity> modules = new ArrayList<>();
 }
