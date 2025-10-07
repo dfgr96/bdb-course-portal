@@ -8,6 +8,7 @@ import java.util.Optional;
 public interface CourseRepositoryPort {
 
     Course save(Course course);
-    List<Course> findAll();
+    List<Course> findActiveAll(Long userId);
+    List<Course> findAvailableAll(Long userId);
     Optional<Course> findById(Long id);
 }

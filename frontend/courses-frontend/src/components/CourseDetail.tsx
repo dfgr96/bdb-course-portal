@@ -23,7 +23,6 @@ export default function CourseDetail() {
         );
         if (!res.ok) throw new Error("Error al obtener curso");
         const data: Course = await res.json();
-        // garantizar valores por defecto para progress/completed
         data.modules = data.modules.map((m) => ({
           ...m,
           progressPercent: m.progressPercent ?? 0,
@@ -38,7 +37,6 @@ export default function CourseDetail() {
     fetchCourse();
   }, [id, userId]);
 
-  // calcula porcentaje del curso: promedio de progressPercent de módulos
   const computeCoursePercent = (c: Course | null) => {
     if (!c || !c.modules || c.modules.length === 0) return 0;
     const sum = c.modules.reduce((acc, m) => acc + (m.progressPercent ?? 0), 0);
@@ -55,7 +53,6 @@ export default function CourseDetail() {
       <h2>{course.title}</h2>
       <p>{course.description}</p>
 
-      {/* Barra de progreso del curso */}
       <div style={{ marginTop: 12 }}>
         <div style={{ height: 12, background: "#eee", borderRadius: 8 }}>
           <div
@@ -106,7 +103,6 @@ export default function CourseDetail() {
               )}
             </div>
 
-            {/* barra de progreso del módulo */}
             <div style={{ marginTop: 8 }}>
               <div style={{ height: 8, background: "#f3f3f3", borderRadius: 6 }}>
                 <div
@@ -139,16 +135,13 @@ export default function CourseDetail() {
                       );
                       if (!res.ok) throw new Error("No se pudo actualizar el progreso");
 
-                      // actualizo estado localmente (optimista)
                       const updatedModules = course.modules.map((mod) =>
                         mod.id === m.id ? { ...mod, progressPercent: 100, completed: true } : mod
                       );
                       setCourse({ ...course, modules: updatedModules });
 
-                      // si ahora todos los módulos están completados, marcar curso como completo
                       const allDone = updatedModules.every((mod) => (mod.progressPercent ?? 0) >= 100);
                       if (allDone) {
-                        // endpoint sugerido: /progress/completeCourse
                         await fetch(
                           `http://localhost:8080/progress/completeCourse?userId=${userId}&courseId=${course.id}`,
                           {
