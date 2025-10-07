@@ -4,6 +4,7 @@ import com.portal.dto.Course;
 import com.portal.dto.Section;
 import com.portal.course.domain.repository.CourseRepositoryPort;
 import com.portal.course.domain.repository.ModuleRepositoryPort;
+import com.portal.dto.ViewCourses;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,8 +20,8 @@ public class CourseService {
         this.moduleRepository = moduleRepository;
     }
 
-    public List<Course> getAllCourses() {
-        return courseRepository.findAll();
+    public ViewCourses getAllCourses(Long userId) {
+        return new ViewCourses(courseRepository.findAvailableAll(userId), courseRepository.findActiveAll(userId));
     }
 
     public Course getCourse(Long id) {

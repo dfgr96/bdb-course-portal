@@ -29,6 +29,7 @@ export default function Login() {
 
       localStorage.setItem("token", data.token);
       localStorage.setItem("userId", data.id.toString());
+      localStorage.setItem("name", data.name)
       navigate("/courses"); 
     } catch (err: any) {
       setError(err.message);

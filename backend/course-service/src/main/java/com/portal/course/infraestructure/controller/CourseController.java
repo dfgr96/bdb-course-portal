@@ -3,6 +3,7 @@ package com.portal.course.infraestructure.controller;
 import com.portal.course.application.CourseService;
 import com.portal.dto.Course;
 import com.portal.dto.Section;
+import com.portal.dto.ViewCourses;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,9 +19,9 @@ public class CourseController {
         this.courseService = courseService;
     }
 
-    @GetMapping
-    public List<Course> getAllCourses() {
-        return courseService.getAllCourses();
+    @GetMapping("/user/{userId}")
+    public ViewCourses getAllCourses(@PathVariable Long userId) {
+        return courseService.getAllCourses(userId);
     }
 
     @GetMapping("/{id}")

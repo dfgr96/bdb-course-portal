@@ -17,13 +17,11 @@ public class CourseRepositoryAdapter implements CourseRepositoryPort {
         this.jpaCourseRepository = jpaCourseRepository;
     }
 
-
     @Override
     public Course save(Course course) {
         CourseEntity entity = toEntity(course);
         return toDomain(jpaCourseRepository.save(entity));
     }
-
 
     @Override
     public Optional<Course> findById(Long id) {
@@ -31,10 +29,17 @@ public class CourseRepositoryAdapter implements CourseRepositoryPort {
                 .map(this::toDomain);
     }
 
+    @Override
+    public List<Course> findActiveAll(Long userId) {
+        return jpaCourseRepository.findActiveCoursesByUserId(userId)
+                .stream()
+                .map(this::toDomain)
+                .toList();
+    }
 
     @Override
-    public List<Course> findAll() {
-        return jpaCourseRepository.findAll()
+    public List<Course> findAvailableAll(Long userId) {
+        return jpaCourseRepository.findCoursesNotEnrolledByUserId(userId)
                 .stream()
                 .map(this::toDomain)
                 .toList();
