@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
-public class ProgressService {
+public class ProgressService implements IProgressService{
 
     private final ProgressRepository progressRepository;
     private final ModuleRepositoryPort moduleRepository;
@@ -28,6 +28,7 @@ public class ProgressService {
         this.enrollmentRepository = enrollmentRepository;
     }
 
+    @Override
     @Transactional
     public ProgressDto updateProgress(Long userId, Long moduleId, Integer percent) {
         ProgressEntity entity = progressRepository.findByUserIdAndModuleId(userId, moduleId)
@@ -50,6 +51,7 @@ public class ProgressService {
                 saved.getPercent(), saved.getCompletedAt());
     }
 
+    @Override
     @Transactional(readOnly = true)
     public List<ModuleProgressDto> getProgressByCourse(Long userId, Long courseId) {
         List<Section> modules = moduleRepository.findByCourseId(courseId);
@@ -81,6 +83,7 @@ public class ProgressService {
                 .toList();
     }
 
+    @Override
     public List<CourseProgressDto> getUserCoursesProgress(Long userId) {
         List<EnrollmentEntity> enrollments =
                 enrollmentRepository.findByUserId(userId);

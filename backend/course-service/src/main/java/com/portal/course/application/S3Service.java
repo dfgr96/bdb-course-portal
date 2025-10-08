@@ -10,13 +10,15 @@ import java.io.IOException;
 import java.util.List;
 
 @Service
-public class S3Service {
+public class S3Service implements IS3Service{
     private final S3Client s3Client;
     private final String bucketName = "portal-courses";
 
     public S3Service(S3Client s3Client) {
         this.s3Client = s3Client;
     }
+
+    @Override
     public List<String> uploadFiles(List<MultipartFile> files, String folder) {
         return files.stream()
                 .map(file -> {

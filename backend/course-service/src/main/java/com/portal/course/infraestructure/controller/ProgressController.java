@@ -1,6 +1,6 @@
 package com.portal.course.infraestructure.controller;
 
-import com.portal.course.application.ProgressService;
+import com.portal.course.application.IProgressService;
 import com.portal.dto.CourseProgressDto;
 import com.portal.dto.ModuleProgressDto;
 import com.portal.dto.ProgressDto;
@@ -12,9 +12,9 @@ import java.util.List;
 @RequestMapping("/progress")
 public class ProgressController {
 
-    private final ProgressService service;
+    private final IProgressService service;
 
-    public ProgressController(ProgressService service) {
+    public ProgressController(IProgressService service) {
         this.service = service;
     }
 

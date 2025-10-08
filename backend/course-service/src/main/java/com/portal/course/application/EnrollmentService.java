@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class EnrollmentService {
+public class EnrollmentService implements IEnrollmentService {
 
     private final EnrollmentRepository repository;
 
@@ -16,6 +16,7 @@ public class EnrollmentService {
         this.repository = repository;
     }
 
+    @Override
     public EnrollmentDto enroll(Long userId, Long courseId) {
         EnrollmentEntity entity = new EnrollmentEntity();
         entity.setUserId(userId);
@@ -26,6 +27,7 @@ public class EnrollmentService {
                 saved.getStatus().name(), saved.getEnrolledAt());
     }
 
+    @Override
     public List<EnrollmentDto> getUserEnrollments(Long userId) {
         return repository.findByUserId(userId).stream()
                 .map(e -> new EnrollmentDto(e.getId(), e.getCourseId(), e.getUserId(),

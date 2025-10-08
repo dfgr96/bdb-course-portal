@@ -1,7 +1,7 @@
 package com.portal.course.infraestructure.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.portal.course.application.CourseService;
+import com.portal.course.application.ICourseService;
 import com.portal.dto.Course;
 import com.portal.dto.Section;
 import com.portal.dto.ViewCourses;
@@ -16,9 +16,9 @@ import java.util.List;
 @RequestMapping("/courses")
 public class CourseController {
 
-    private final CourseService courseService;
+    private final ICourseService courseService;
 
-    public CourseController(CourseService courseService) {
+    public CourseController(ICourseService courseService) {
         this.courseService = courseService;
     }
 

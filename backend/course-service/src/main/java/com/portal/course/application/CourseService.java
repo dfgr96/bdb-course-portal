@@ -11,31 +11,30 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @Service
-public class CourseService {
+public class CourseService implements ICourseService{
 
     private final CourseRepositoryPort courseRepository;
     private final ModuleRepositoryPort moduleRepository;
-    private final S3Service s3Service;
+    private final IS3Service s3Service;
 
-    public CourseService(CourseRepositoryPort courseRepository, ModuleRepositoryPort moduleRepository, S3Service s3Service) {
+    public CourseService(CourseRepositoryPort courseRepository, ModuleRepositoryPort moduleRepository, IS3Service s3Service) {
         this.courseRepository = courseRepository;
         this.moduleRepository = moduleRepository;
         this.s3Service = s3Service;
     }
 
+    @Override
     public ViewCourses getAllCourses(Long userId) {
         return new ViewCourses(courseRepository.findAvailableAll(userId), courseRepository.findActiveAll(userId));
     }
 
+    @Override
     public Course getCourse(Long id) {
         return courseRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Course not found"));
     }
 
-    public Course createCourse(Course course) {
-        return courseRepository.save(course);
-    }
-
+    @Override
     public Course createCourse(Course course, List<MultipartFile> files) {
 
         List<String> urls = s3Service.uploadFiles(files, "courses/" + course.getTitle().replace(" ", "_"));
@@ -48,6 +47,7 @@ public class CourseService {
         return courseRepository.save(course);
     }
 
+    @Override
     public Section addModule(Long courseId, Section module) {
         return moduleRepository.save(courseId, module);
     }

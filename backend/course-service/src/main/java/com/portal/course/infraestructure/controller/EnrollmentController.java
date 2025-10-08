@@ -1,6 +1,6 @@
 package com.portal.course.infraestructure.controller;
 
-import com.portal.course.application.EnrollmentService;
+import com.portal.course.application.IEnrollmentService;
 import com.portal.dto.EnrollmentDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,9 +11,9 @@ import java.util.List;
 @RequestMapping("/enrollments")
 public class EnrollmentController {
 
-    private final EnrollmentService service;
+    private final IEnrollmentService service;
 
-    public EnrollmentController(EnrollmentService service) {
+    public EnrollmentController(IEnrollmentService service) {
         this.service = service;
     }
 
