@@ -17,6 +17,7 @@ public class CourseEntity {
     private Long id;
     private String title;
     private String description;
+    private String category;
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<SectionEntity> modules = new ArrayList<>();

@@ -11,6 +11,7 @@ public class Course {
     private Long id;
     private String title;
     private String description;
+    private String category;
     private List<Section> modules = new ArrayList<>();
 
     public Course() {}

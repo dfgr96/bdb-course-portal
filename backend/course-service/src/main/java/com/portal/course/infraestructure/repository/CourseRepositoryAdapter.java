@@ -60,7 +60,7 @@ public class CourseRepositoryAdapter implements CourseRepositoryPort {
         c.setId(entity.getId());
         c.setTitle(entity.getTitle());
         c.setDescription(entity.getDescription());
-
+        c.setCategory(entity.getCategory());
         if (entity.getModules() != null) {
             c.setModules(
                     entity.getModules().stream()
@@ -68,7 +68,6 @@ public class CourseRepositoryAdapter implements CourseRepositoryPort {
                             .toList()
             );
         }
-
         return c;
     }
 
@@ -77,6 +76,7 @@ public class CourseRepositoryAdapter implements CourseRepositoryPort {
         e.setId(domain.getId());
         e.setTitle(domain.getTitle());
         e.setDescription(domain.getDescription());
+        e.setCategory(domain.getCategory());
         if (domain.getModules() != null) {
             List<SectionEntity> sections = domain.getModules().stream()
                     .map(this::toEntity)

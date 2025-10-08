@@ -1,11 +1,14 @@
 package com.portal.course.infraestructure.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.portal.course.application.CourseService;
 import com.portal.dto.Course;
 import com.portal.dto.Section;
 import com.portal.dto.ViewCourses;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -29,9 +32,19 @@ public class CourseController {
         return courseService.getCourse(id);
     }
 
-    @PostMapping
-    public ResponseEntity<Course> createCourse(@RequestBody Course course) {
-        return ResponseEntity.ok(courseService.createCourse(course));
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<Course> createCourse(@RequestPart("course") String courseJson,
+                                               @RequestPart("files") List<MultipartFile> files) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            Course course = objectMapper.readValue(courseJson, Course.class);
+
+            Course saved = courseService.createCourse(course, files);
+            return ResponseEntity.ok(saved);
+
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @PostMapping("/{id}/modules")

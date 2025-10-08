@@ -27,7 +27,7 @@ public class AuthService {
                     String token = jwtUtil.generateToken(user.getId().toString(), user.getRole().name());
                     long expiresAt = jwtUtil.getExpiration(token).getTime();
                     tokenRepository.saveToken(token, user.getId().toString(), expiresAt);
-                    return new Login(token, user.getId(), user.getName());
+                    return new Login(token, user.getId(), user.getName(), user.getRole());
                 });
     }
 
